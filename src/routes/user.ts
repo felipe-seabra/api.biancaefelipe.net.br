@@ -1,11 +1,9 @@
 import express from "express";
-import { PrismaClient } from "../../prisma/generated/client";
 
 import userController from "../controllers/userController";
 import authMiddleware from "../middlewares/authMiddleware";
 import { userMiddleware } from "../middlewares";
 
-const prisma = new PrismaClient();
 const user = express.Router();
 
 user.get("/", authMiddleware.authToken, userController.fildAllUsers);
