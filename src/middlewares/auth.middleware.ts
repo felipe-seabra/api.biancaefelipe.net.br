@@ -21,4 +21,4 @@ const authToken = (req: AuthRequest, res: Response, next: NextFunction) => {
   }
 };
 
-export = { authToken };
+export default authToken;

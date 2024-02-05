@@ -8,7 +8,7 @@ const jwtConfig = {
 };
 
 interface Payload {
-  dataValues: any; // Você pode ajustar este tipo de acordo com a estrutura real dos dados que está utilizando.
+  dataValues: string; // Você pode ajustar este tipo de acordo com a estrutura real dos dados que está utilizando.
 }
 
 const generateToken = (payload: Payload): string => {
@@ -58,6 +58,7 @@ const decodeToken = (token: string): any => {
     generateToken,
     decodeToken,
   };
+
   if (!token) {
     throw new Error("Undefined Token");
   }
