@@ -10,7 +10,6 @@ const jwtConfig: SignOptions & VerifyOptions = {
 
 const generateToken = (payload: Payload): string => {
   try {
-    console.log(jwt.sign(payload.dataValues, JWT_SECRET, jwtConfig));
     return jwt.sign(payload.dataValues, JWT_SECRET, jwtConfig);
   } catch (err) {
     throw new Error("Failed to generate token");

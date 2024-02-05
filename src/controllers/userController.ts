@@ -31,7 +31,8 @@ const createNewUser = async (req: IAuthRequest, res: Response) => {
 
 const updateById = async (req: IAuthRequest, res: Response) => {
   const { id } = req.params;
-  const { body } = req.body;
+  const { body } = req;
+
   const { type, message } = await userService.updateById(body, id);
 
   if (type) return res.status(mapError(type as keyof typeof errorMap)).json({ message });
