@@ -1,4 +1,4 @@
-const Joi = require("joi");
+import Joi from "joi";
 
 export const newUserSchema = Joi.object({
   name: Joi.string().min(8).required(),
@@ -6,6 +6,13 @@ export const newUserSchema = Joi.object({
     .email({ tlds: { allow: false } })
     .required(),
   password: Joi.string().min(6).required(),
+});
+
+export const updateUserSchema = Joi.object({
+  name: Joi.string().min(8).required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
 });
 
 export const newGiftSchema = Joi.object({

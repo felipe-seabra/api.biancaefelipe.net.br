@@ -10,8 +10,23 @@ const validateNewGift = async (req: IAuthRequest, res: Response, next: NextFunct
     next();
   } catch (err: any) {
     console.log(err);
-    return res.status(400).send({ message: err.message });
+    return res.status(400).send({ message: "Some required fields are missing" });
   }
 };
 
-export default { validateNewGift };
+const validateUpdateGift = async (
+  req: IAuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body } = req;
+    await newGiftSchema.validateAsync(body);
+    next();
+  } catch (err: any) {
+    console.log(err);
+    return res.status(400).send({ message: "Some required fields are missing" });
+  }
+};
+
+export default { validateNewGift, validateUpdateGift };
