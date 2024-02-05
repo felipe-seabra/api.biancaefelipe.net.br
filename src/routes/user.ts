@@ -19,7 +19,7 @@ user.post("/", async (req: IAuthRequest, res: Response) => {
     });
     res.json(result);
   } catch (error) {
-    res.json({ message: "E-mail já cadastrato" });
+    res.json({ message: "E-mail already registered" });
   }
 });
 
@@ -40,7 +40,7 @@ user.put("/:id", async (req: IAuthRequest, res: Response) => {
     });
     res.json(result);
   } catch (error) {
-    res.json({ message: "User not exist" });
+    res.json({ message: "User not exists" });
   }
 });
 
@@ -52,7 +52,7 @@ user.delete("/:id", async (req: IAuthRequest, res: Response) => {
     });
     res.json({ message: "User deleted" });
   } catch (error) {
-    res.json({ message: "User not exist" });
+    res.json({ message: "User not exists" });
   }
 });
 
