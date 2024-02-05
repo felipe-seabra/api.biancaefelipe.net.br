@@ -7,3 +7,12 @@ export const newUserSchema = Joi.object({
     .required(),
   password: Joi.string().min(6).required(),
 });
+
+export const newGiftSchema = Joi.object({
+  name: Joi.string().min(8).required(),
+  description: Joi.string().min(8).required(),
+  amount: Joi.number().required(),
+  available: Joi.boolean().required(),
+  price: Joi.number().required(),
+  imageUrl: Joi.string().uri().required(),
+});

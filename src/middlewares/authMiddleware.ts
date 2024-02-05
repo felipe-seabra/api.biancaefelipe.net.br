@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { IUser } from "../interfaces";
 
-const { decodeToken } = require("../utils/jwt");
+import jwt from "../utils/jwt";
 
 interface AuthRequest extends Request {
   user?: IUser;
@@ -13,12 +13,14 @@ const authToken = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (!authorization) res.status(401).json({ message: "Token not found" });
 
   try {
-    const user = decodeToken(authorization);
-    req.user = { ...user };
-    return next();
+    if (authorization) {
+      const user = jwt.decodeToken(authorization);
+      req.user = { ...user };
+      return next();
+    }
   } catch (err) {
     res.status(401).json({ message: "Expired or invalid token" });
   }
 };
 
-export default authToken;
+export default { authToken };

@@ -1,7 +1,7 @@
-const { newUserSchema } = require("./schema");
+import { newUserSchema } from "./schema";
 
 import { Response, NextFunction } from "express";
-import { IAuthRequest, IUser } from "../interfaces";
+import { IAuthRequest } from "../interfaces";
 import { ValidationError } from "joi";
 
 const validateNewUser = async (req: IAuthRequest, res: Response, next: NextFunction) => {
@@ -18,4 +18,4 @@ const validateNewUser = async (req: IAuthRequest, res: Response, next: NextFunct
   }
 };
 
-export default validateNewUser;
+export default { validateNewUser };
