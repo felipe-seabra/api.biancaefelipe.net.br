@@ -1,6 +1,6 @@
 const { newUserSchema } = require("./schema");
 
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { IAuthRequest, IUser } from "../interfaces";
 import { ValidationError } from "joi";
 

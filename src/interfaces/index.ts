@@ -1,6 +1,5 @@
 import { Request } from "express";
 export interface IUser {
-  id: string;
   name: string;
   email: string;
   password: string;
@@ -17,4 +16,11 @@ export interface IGift {
 
 export interface IAuthRequest extends Request {
   user?: IUser;
+}
+
+export interface Payload {
+  dataValues: {
+    name: string;
+    email: string;
+  };
 }

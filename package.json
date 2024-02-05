@@ -19,6 +19,7 @@
   "homepage": "https://github.com/felipe-seabra/biancaefelipe-api#readme",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.16",
     "nodemon": "^3.0.3",
     "prisma": "^5.9.1",
