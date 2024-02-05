@@ -8,10 +8,10 @@ export interface IUser {
 export interface IGift {
   name: string;
   description: string;
-  amout: number;
+  amount: number;
   available: boolean;
   price: number;
-  imgUrl: string;
+  imageUrl: string;
 }
 
 export interface IAuthRequest extends Request {

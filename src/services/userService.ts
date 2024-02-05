@@ -21,7 +21,7 @@ const createNewUser = async (user: IUser) => {
     const token = jwt.generateToken(payload);
     return { type: null, message: token };
   } catch (error) {
-    return { type: "EMAIL_ALREADY_REGISTERED", message: "User already registered" };
+    return { type: "EMAIL_ALREADY_REGISTERED", message: "Email already registered" };
   }
 };
 
@@ -46,7 +46,7 @@ const findById = async (id: string) => {
       email: true,
     },
   });
-  if (!result) return { type: "USER_NOT_FOUND", message: "User does not exist" };
+  if (!result) return { type: "USER_NOT_FOUND", message: "User does not exists" };
 
   return { type: null, message: result };
 };
@@ -60,7 +60,7 @@ const updateById = async (props: IUser, id: string) => {
 
     return { type: null, message: "User updated successfully" };
   } catch (error) {
-    return { type: "USER_NOT_FOUND", message: "User does not exist" };
+    return { type: "USER_NOT_FOUND", message: "User does not exists" };
   }
 };
 
@@ -72,7 +72,7 @@ const deleteById = async (id: string) => {
 
     return { type: null, message: "User successfully deleted" };
   } catch (error) {
-    return { type: "USER_NOT_FOUND", message: "User does not exist" };
+    return { type: "USER_NOT_FOUND", message: "User does not exists" };
   }
 };
 
