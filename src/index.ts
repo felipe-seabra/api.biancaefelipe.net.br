@@ -41,10 +41,47 @@ app.get("/users", async (req, res) => {
 });
 
 app.post("/user", async (req, res) => {
-  const result = await prisma.user.create({
-    data: { ...req.body },
-  })
-  res.json(result)
+  try {
+    const result = await prisma.user.create({
+      data: { ...req.body },
+    });
+    res.json(result);
+  } catch (error) {
+    res.json({ message: "E-mail já cadastrato" });
+  }
+});
+
+app.get("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const result = await prisma.user.findUnique({
+    where: { id: parseInt(id) },
+  });
+  res.json(result);
+});
+
+app.put("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await prisma.user.update({
+      where: { id: parseInt(id) },
+      data: { ...req.body },
+    });
+    res.json(result);
+  } catch (error) {
+    res.json({ message: "User not exist" });
+  }
+});
+
+app.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.user.delete({
+      where: { id: parseInt(id) },
+    });
+    res.json({ message: "User deleted" });
+  } catch (error) {
+    res.json({ message: "User not exist" });
+  }
 });
 
 app.get("/gifts", async (req, res) => {
@@ -53,7 +90,7 @@ app.get("/gifts", async (req, res) => {
 });
 
 app.get("/gift/:id", async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const result = await prisma.gifts.findUnique({
     where: { id: parseInt(id) },
   });
@@ -61,11 +98,39 @@ app.get("/gift/:id", async (req, res) => {
 });
 
 app.post("/gift", async (req, res) => {
-  const result = await prisma.gifts.create({
-    data: { ...req.body },
-  });
-  res.json(result);
+  try {
+    const result = await prisma.gifts.create({
+      data: { ...req.body },
+    });
+    res.json(result);
+  } catch (error) {
+    res.json({ message: "Gift já exist" });
+  }
 });
 
+app.put("/gift/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await prisma.gifts.update({
+      where: { id: parseInt(id) },
+      data: { ...req.body },
+    });
+    res.json(result);
+  } catch (error) {
+    res.json({ message: "Gift not exist" });
+  }
+});
+
+app.delete("/gift/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.gifts.delete({
+      where: { id: parseInt(id) },
+    });
+    res.json({ message: "Gift deleted" });
+  } catch (error) {
+    res.json({ message: "Gift not exist" });
+  }
+});
 
 app.listen(3000, () => console.log("REST API server ready at: http://localhost:3000"));
