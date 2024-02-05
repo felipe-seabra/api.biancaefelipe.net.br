@@ -1,14 +1,10 @@
 const { newUserSchema } = require("./schema");
 
 import { Request, Response, NextFunction } from "express";
-import { IUser } from "../interfaces";
+import { IAuthRequest, IUser } from "../interfaces";
 import { ValidationError } from "joi";
 
-interface AuthRequest extends Request {
-  user?: IUser;
-}
-
-const validateNewUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
+const validateNewUser = async (req: IAuthRequest, res: Response, next: NextFunction) => {
   try {
     const { body } = req;
     await newUserSchema.validateAsync(body);

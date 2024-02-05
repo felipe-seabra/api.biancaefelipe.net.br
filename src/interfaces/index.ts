@@ -1,3 +1,4 @@
+import { Request } from "express";
 export interface IUser {
   id: string;
   name: string;
@@ -12,4 +13,8 @@ export interface IGift {
   available: boolean;
   price: number;
   imgUrl: string;
+}
+
+export interface IAuthRequest extends Request {
+  user?: IUser;
 }
