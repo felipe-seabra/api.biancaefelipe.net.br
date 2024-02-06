@@ -6,7 +6,7 @@ import userMiddleware from "../middlewares/userMiddleware";
 
 const user = express.Router();
 
-user.get("/", authMiddleware.authToken, userController.fildAllUsers);
+user.get("/", userController.fildAllUsers);
 user.get("/:id", authMiddleware.authToken, userController.findById);
 user.post("/", userMiddleware.validateNewUser, userController.createNewUser);
 user.put(
