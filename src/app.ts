@@ -9,7 +9,7 @@ const app = express();
 // Middleware para habilitar o CORS
 app.use(
   cors({
-    origin: "https://biancaefelipe-api.vercel.app/:5173",
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     optionsSuccessStatus: 204,
