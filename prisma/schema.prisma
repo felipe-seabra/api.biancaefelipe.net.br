@@ -16,13 +16,14 @@ model User {
 }
 
 model Gifts {
-  id          Int     @id @default(autoincrement())
-  name        String  @unique
-  description String
-  amount      Int
-  available   Boolean
-  price       Int
-  imageUrl    String  @unique
-  buyer       User?   @relation(fields: [buyerId], references: [id])
-  buyerId     Int?
+  id            Int     @id @default(autoincrement())
+  name          String  @unique
+  description   String
+  amount        Int
+  available     Boolean
+  price         Int
+  imageUrl      String  @unique
+  buyer         User?   @relation(fields: [buyerId], references: [id])
+  buyerId       Int?
+  paymentMethod String
 }

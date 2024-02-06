@@ -12,6 +12,7 @@ export interface IGift {
   available: boolean;
   price: number;
   imageUrl: string;
+  paymentMethod: string;
 }
 
 export interface IAuthRequest extends Request {
