@@ -1,6 +1,6 @@
 import jwt from "../utils/jwt";
 
-import { PrismaClient } from "../../prisma/generated/client";
+import { PrismaClient } from "@prisma/client";
 
 import { IUser, Payload } from "../interfaces";
 
