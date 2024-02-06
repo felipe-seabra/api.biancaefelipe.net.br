@@ -1,10 +1,20 @@
 import express from "express";
-
+import cors from "cors";
 import user from "./routes/user";
 import gift from "./routes/gifts";
 import login from "./routes/login";
 
 const app = express();
+
+// Middleware para habilitar o CORS
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Substitua pelo endereço do seu aplicativo cliente
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  })
+);
 
 app.use(express.json());
 
