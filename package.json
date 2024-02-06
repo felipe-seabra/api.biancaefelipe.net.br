@@ -4,10 +4,8 @@
   "description": "API para site de casamento",
   "main": "server.ts",
   "scripts": {
-    "start": "src/server.ts",
     "dev": "nodemon src/server.ts ",
-    "vercel-build": "npx prisma migrate deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "vercel-build": "npx prisma migrate deploy"
   },
   "repository": {
     "type": "git",
