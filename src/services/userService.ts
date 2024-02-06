@@ -1,14 +1,11 @@
 import jwt from "../utils/jwt";
-
-import { PrismaClient } from "@prisma/client";
+import { prismaClient } from "../database";
 
 import { IUser, Payload } from "../interfaces";
 
-const prisma = new PrismaClient();
-
 const createNewUser = async (user: IUser) => {
   try {
-    await prisma.user.create({
+    await prismaClient.user.create({
       data: { ...user },
     });
     const payload: Payload = {
@@ -26,7 +23,7 @@ const createNewUser = async (user: IUser) => {
 };
 
 export const fildAllUsers = async () => {
-  const users = await prisma.user.findMany({
+  const users = await prismaClient.user.findMany({
     select: {
       id: true,
       name: true,
@@ -38,7 +35,7 @@ export const fildAllUsers = async () => {
 };
 
 const findById = async (id: string) => {
-  const result = await prisma.user.findUnique({
+  const result = await prismaClient.user.findUnique({
     where: { id: parseInt(id) },
     select: {
       id: true,
@@ -53,7 +50,7 @@ const findById = async (id: string) => {
 
 const updateById = async (props: IUser, id: string) => {
   try {
-    const result = await prisma.user.update({
+    const result = await prismaClient.user.update({
       where: { id: parseInt(id) },
       data: { ...props },
     });
@@ -66,7 +63,7 @@ const updateById = async (props: IUser, id: string) => {
 
 const deleteById = async (id: string) => {
   try {
-    await prisma.user.delete({
+    await prismaClient.user.delete({
       where: { id: parseInt(id) },
     });
 

@@ -1,10 +1,7 @@
 import jwt from "../utils/jwt";
+import { prismaClient } from "../database";
 
-import { PrismaClient } from "../../prisma/generated/client";
-
-import { IUser, Payload } from "../interfaces";
-
-const prisma = new PrismaClient();
+import { Payload } from "../interfaces";
 
 const validateLogin = async (email: string, password: string) => {
   if (!(email && password)) {
@@ -12,7 +9,7 @@ const validateLogin = async (email: string, password: string) => {
   }
 
   try {
-    const user = await prisma.user.findUnique({
+    const user = await prismaClient.user.findUnique({
       where: { email, password },
       select: { name: true, email: true },
     });

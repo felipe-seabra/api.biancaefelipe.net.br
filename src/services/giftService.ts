@@ -1,17 +1,15 @@
-import { PrismaClient } from "../../prisma/generated/client";
+import { prismaClient } from "../database";
 import { IGift } from "../interfaces";
 
-const prisma = new PrismaClient();
-
 const findAllGifts = async () => {
-  const gifts = await prisma.gifts.findMany();
+  const gifts = await prismaClient.gifts.findMany();
 
   if (gifts.length === 0) return { type: "GIFT_NOT_FOUND", message: "No gift found" };
   return { type: null, message: gifts };
 };
 
 const findById = async (id: string) => {
-  const result = await prisma.gifts.findUnique({
+  const result = await prismaClient.gifts.findUnique({
     where: { id: parseInt(id) },
   });
 
@@ -21,7 +19,7 @@ const findById = async (id: string) => {
 
 const createNewGift = async (gift: IGift) => {
   try {
-    await prisma.gifts.create({
+    await prismaClient.gifts.create({
       data: { ...gift },
     });
 
@@ -33,7 +31,7 @@ const createNewGift = async (gift: IGift) => {
 
 const updateById = async (props: IGift, id: string) => {
   try {
-    await prisma.gifts.update({
+    await prismaClient.gifts.update({
       where: { id: parseInt(id) },
       data: { ...props },
     });
@@ -46,7 +44,7 @@ const updateById = async (props: IGift, id: string) => {
 
 const deleteById = async (id: string) => {
   try {
-    await prisma.gifts.delete({
+    await prismaClient.gifts.delete({
       where: { id: parseInt(id) },
     });
 
