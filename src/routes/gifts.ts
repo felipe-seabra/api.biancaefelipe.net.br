@@ -7,7 +7,7 @@ import giftMiddleware from "../middlewares/giftMiddleware";
 const gift = express.Router();
 
 gift.get("/", giftController.findAllGifts);
-gift.get("/:id", authMiddleware.authToken, giftController.findById);
+gift.get("/:id", giftController.findById);
 gift.post(
   "/",
   authMiddleware.authToken,
