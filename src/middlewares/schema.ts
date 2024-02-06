@@ -16,7 +16,7 @@ export const updateUserSchema = Joi.object({
 });
 
 export const newGiftSchema = Joi.object({
-  name: Joi.string().min(8).required(),
+  name: Joi.string().min(3).required(),
   description: Joi.string().min(8).required(),
   amount: Joi.number().required(),
   available: Joi.boolean().required(),
