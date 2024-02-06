@@ -2,7 +2,7 @@
   "name": "biancaefelipe-api",
   "version": "1.0.0",
   "description": "API para site de casamento",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "start": "src/server.ts",
     "dev": "nodemon src/server.ts ",
