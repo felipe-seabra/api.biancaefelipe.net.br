@@ -22,4 +22,5 @@ export const newGiftSchema = Joi.object({
   available: Joi.boolean().required(),
   price: Joi.number().required(),
   imageUrl: Joi.string().uri().required(),
+  paymentMethod: Joi.string().uri().required(),
 });
