@@ -4,7 +4,7 @@ import { Payload } from "../interfaces";
 const JWT_SECRET: string = process.env.JWT_SECRET || "MySecretPassword";
 
 const jwtConfig: SignOptions & VerifyOptions = {
-  expiresIn: "15m",
+  expiresIn: "30m",
   algorithm: "HS256",
 };
 
