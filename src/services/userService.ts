@@ -35,6 +35,7 @@ export const fildAllUsers = async () => {
       id: true,
       name: true,
       email: true,
+      isAdmin: true,
     },
   });
   if (users.length === 0) return { type: "USER_NOT_FOUND", message: "No user found" };
