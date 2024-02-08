@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import jwt from "../utils/jwt";
 import { prismaClient } from "../database";
 
@@ -10,10 +11,15 @@ const validateLogin = async (email: string, password: string) => {
 
   try {
     const user = await prismaClient.user.findUnique({
-      where: { email, password },
-      select: { name: true, email: true },
+      where: { email },
     });
+    if (user) {
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
+      if (!passwordMatch) {
+        return { type: "INVALID_PASSWORD", message: "Invalid password" };
+      }
+    }
     if (!user) return { type: "INVALID_FIELDS", message: "Invalid fields" };
 
     const payload: Payload = {

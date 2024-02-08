@@ -22,8 +22,4 @@ app.use("/login", login);
 app.use("/user", user);
 app.use("/gift", gift);
 
-// main()
-//   .catch((e) => console.error(e))
-//   .finally(async () => await prisma.$disconnect());
-
 export default app;

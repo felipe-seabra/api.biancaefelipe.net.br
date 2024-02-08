@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import jwt from "../utils/jwt";
 import { prismaClient } from "../database";
 
@@ -5,8 +6,14 @@ import { IUser, Payload } from "../interfaces";
 
 const createNewUser = async (user: IUser) => {
   try {
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+
+    const userWithHashedPassword = { ...user, password: hashedPassword };
+
     await prismaClient.user.create({
-      data: { ...user },
+      data: { ...userWithHashedPassword },
     });
     const payload: Payload = {
       dataValues: {
@@ -28,6 +35,7 @@ export const fildAllUsers = async () => {
       id: true,
       name: true,
       email: true,
+      password: true,
     },
   });
   if (users.length === 0) return { type: "USER_NOT_FOUND", message: "No user found" };
