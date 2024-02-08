@@ -49,6 +49,7 @@ const findById = async (id: string) => {
       id: true,
       name: true,
       email: true,
+      isAdmin: true,
     },
   });
   if (!result) return { type: "USER_NOT_FOUND", message: "User does not exists" };
