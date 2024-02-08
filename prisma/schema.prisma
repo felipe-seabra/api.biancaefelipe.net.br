@@ -8,22 +8,20 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       String  @id @default(uuid())
   name     String
   email    String  @unique
   password String
-  shopping Gifts[]
+  isAdmin  Boolean
 }
 
 model Gifts {
-  id            Int     @id @default(autoincrement())
+  id            String  @id @default(uuid())
   name          String  @unique
   description   String
   amount        Int
   available     Boolean
   price         Int
-  imageUrl      String  @unique
-  buyer         User?   @relation(fields: [buyerId], references: [id])
-  buyerId       Int?
+  imageUrl      String
   paymentMethod String
 }

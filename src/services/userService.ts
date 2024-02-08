@@ -43,7 +43,7 @@ export const fildAllUsers = async () => {
 
 const findById = async (id: string) => {
   const result = await prismaClient.user.findUnique({
-    where: { id: parseInt(id) },
+    where: { id: id },
     select: {
       id: true,
       name: true,
@@ -58,7 +58,7 @@ const findById = async (id: string) => {
 const updateById = async (props: IUser, id: string) => {
   try {
     const result = await prismaClient.user.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { ...props },
     });
 
@@ -71,7 +71,7 @@ const updateById = async (props: IUser, id: string) => {
 const deleteById = async (id: string) => {
   try {
     await prismaClient.user.delete({
-      where: { id: parseInt(id) },
+      where: { id: id },
     });
 
     return { type: null, message: "User successfully deleted" };

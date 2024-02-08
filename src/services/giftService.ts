@@ -10,9 +10,8 @@ const findAllGifts = async () => {
 
 const findById = async (id: string) => {
   const result = await prismaClient.gifts.findUnique({
-    where: { id: parseInt(id) },
+    where: { id: id },
   });
-
   if (!result) return { type: "GIFT_NOT_FOUND", message: "No gift found" };
   return { type: null, message: result };
 };
@@ -32,7 +31,7 @@ const createNewGift = async (gift: IGift) => {
 const updateById = async (props: IGift, id: string) => {
   try {
     await prismaClient.gifts.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { ...props },
     });
 
@@ -45,7 +44,7 @@ const updateById = async (props: IGift, id: string) => {
 const deleteById = async (id: string) => {
   try {
     await prismaClient.gifts.delete({
-      where: { id: parseInt(id) },
+      where: { id: id },
     });
 
     return { type: null, message: "Gift successfully deleted" };
