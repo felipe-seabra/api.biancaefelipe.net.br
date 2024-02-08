@@ -21,7 +21,7 @@ model Gifts {
   description   String
   amount        Int
   available     Boolean
-  price         Float
+  price         Int
   imageUrl      String  @unique
   buyer         User?   @relation(fields: [buyerId], references: [id])
   buyerId       Int?
