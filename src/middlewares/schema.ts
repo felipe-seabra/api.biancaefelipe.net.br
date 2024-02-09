@@ -14,6 +14,7 @@ export const updateUserSchema = Joi.object({
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .required(),
+  isAdmin: Joi.boolean().required(),
 });
 
 export const newGiftSchema = Joi.object({
