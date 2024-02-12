@@ -25,7 +25,7 @@ const validateLogin = async (email: string, password: string) => {
     }
     if (!user) return { type: 'UNAUTHORIZED', message: 'Invalid fields' }
 
-    const { isAdmin, name, id } = user
+    const { isMaster, isAdmin, name, id } = user
 
     const payload: Payload = {
       dataValues: {
@@ -34,7 +34,10 @@ const validateLogin = async (email: string, password: string) => {
       },
     }
     const token = jwt.generateToken(payload)
-    return { type: null, message: { token, isAdmin, name, email, id } }
+    return {
+      type: null,
+      message: { token, isAdmin, name, email, id, isMaster },
+    }
   } catch (error) {
     return { type: 'UNAUTHORIZED', message: 'Invalid fields' }
   }

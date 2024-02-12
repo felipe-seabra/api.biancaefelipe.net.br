@@ -10,7 +10,10 @@ const createNewUser = async (user: IUser) => {
 
     const hashedPassword = await bcrypt.hash(user.password, salt)
 
-    const userWithHashedPassword = { ...user, password: hashedPassword }
+    const userWithHashedPassword = {
+      ...user,
+      password: hashedPassword,
+    }
 
     await prismaClient.user.create({
       data: { ...userWithHashedPassword },

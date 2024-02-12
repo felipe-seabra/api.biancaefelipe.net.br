@@ -7,6 +7,7 @@ export const newUserSchema = Joi.object({
     .required(),
   password: Joi.string().min(6).required(),
   isAdmin: Joi.boolean().required(),
+  isMaster: Joi.boolean().default(false),
 })
 
 export const updateUserSchema = Joi.object({
