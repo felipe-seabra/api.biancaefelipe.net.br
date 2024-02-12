@@ -44,6 +44,7 @@ export const fildAllUsers = async () => {
         name: true,
         email: true,
         isAdmin: true,
+        isMaster: true,
       },
     })
     if (users.length === 0)
@@ -64,6 +65,7 @@ const findById = async (id: string) => {
         name: true,
         email: true,
         isAdmin: true,
+        isMaster: true,
       },
     })
 
