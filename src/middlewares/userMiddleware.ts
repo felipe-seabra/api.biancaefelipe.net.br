@@ -11,7 +11,6 @@ const validateNewUser = async (
 ) => {
   try {
     const { body } = req
-    console.log(body)
     await newUserSchema.validateAsync(body)
     next()
   } catch (err) {
