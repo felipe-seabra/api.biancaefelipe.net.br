@@ -28,6 +28,7 @@ const createNewUser = async (user: IUser) => {
     const token = jwt.generateToken(payload)
     return { type: null, message: token }
   } catch (error) {
+    console.log(error)
     return {
       type: 'EMAIL_ALREADY_REGISTERED',
       message: 'Email already registered',
