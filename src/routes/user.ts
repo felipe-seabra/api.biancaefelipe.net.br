@@ -1,20 +1,20 @@
-import express from "express";
+import express from 'express'
 
-import userController from "../controllers/userController";
-import authMiddleware from "../middlewares/authMiddleware";
-import userMiddleware from "../middlewares/userMiddleware";
+import userController from '../controllers/userController'
+import authMiddleware from '../middlewares/authMiddleware'
+import userMiddleware from '../middlewares/userMiddleware'
 
-const user = express.Router();
+const user = express.Router()
 
-user.get("/", authMiddleware.authToken, userController.fildAllUsers);
-user.get("/:id", authMiddleware.authToken, userController.findById);
-user.post("/", userMiddleware.validateNewUser, userController.createNewUser);
+user.get('/', authMiddleware.authToken, userController.fildAllUsers)
+user.get('/:id', authMiddleware.authToken, userController.findById)
+user.post('/', userMiddleware.validateNewUser, userController.createNewUser)
 user.put(
-  "/:id",
+  '/:id',
   authMiddleware.authToken,
   userMiddleware.validateUpdateUser,
-  userController.updateById
-);
-user.delete("/:id", authMiddleware.authToken, userController.deleteById);
+  userController.updateById,
+)
+user.delete('/:id', authMiddleware.authToken, userController.deleteById)
 
-export default user;
+export default user

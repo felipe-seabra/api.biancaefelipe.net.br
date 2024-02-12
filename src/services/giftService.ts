@@ -1,56 +1,60 @@
-import { prismaClient } from "../database";
-import { IGift } from "../interfaces";
+import { prismaClient } from '../database'
+import { IGift } from '../interfaces'
 
 const findAllGifts = async () => {
-  const gifts = await prismaClient.gifts.findMany();
+  const gifts = await prismaClient.gifts.findMany()
 
-  if (gifts.length === 0) return { type: "GIFT_NOT_FOUND", message: "No gift found" };
-  return { type: null, message: gifts };
-};
+  if (gifts.length === 0)
+    return { type: 'GIFT_NOT_FOUND', message: 'No gift found' }
+  return { type: null, message: gifts }
+}
 
 const findById = async (id: string) => {
   const result = await prismaClient.gifts.findUnique({
-    where: { id: id },
-  });
-  if (!result) return { type: "GIFT_NOT_FOUND", message: "No gift found" };
-  return { type: null, message: result };
-};
+    where: { id },
+  })
+  if (!result) return { type: 'GIFT_NOT_FOUND', message: 'No gift found' }
+  return { type: null, message: result }
+}
 
 const createNewGift = async (gift: IGift) => {
   try {
     await prismaClient.gifts.create({
       data: { ...gift },
-    });
+    })
 
-    return { type: null, message: "Gift registered successfully" };
+    return { type: null, message: 'Gift registered successfully' }
   } catch (error) {
-    return { type: "GIFT_ALREADY_REGISTERED", message: "Gift already registered" };
+    return {
+      type: 'GIFT_ALREADY_REGISTERED',
+      message: 'Gift already registered',
+    }
   }
-};
+}
 
 const updateById = async (props: IGift, id: string) => {
   try {
     await prismaClient.gifts.update({
-      where: { id: id },
+      where: { id },
       data: { ...props },
-    });
+    })
 
-    return { type: null, message: "Gift updated successfully" };
+    return { type: null, message: 'Gift updated successfully' }
   } catch (error) {
-    return { type: "GIFT_NOT_FOUND", message: "No gift found" };
+    return { type: 'GIFT_NOT_FOUND', message: 'No gift found' }
   }
-};
+}
 
 const deleteById = async (id: string) => {
   try {
     await prismaClient.gifts.delete({
-      where: { id: id },
-    });
+      where: { id },
+    })
 
-    return { type: null, message: "Gift successfully deleted" };
+    return { type: null, message: 'Gift successfully deleted' }
   } catch (error) {
-    return { type: "GIFT_NOT_FOUND", message: "No gift found" };
+    return { type: 'GIFT_NOT_FOUND', message: 'No gift found' }
   }
-};
+}
 
-export default { findAllGifts, findById, createNewGift, updateById, deleteById };
+export default { findAllGifts, findById, createNewGift, updateById, deleteById }

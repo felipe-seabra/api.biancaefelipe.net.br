@@ -1,25 +1,25 @@
-import express from "express";
+import express from 'express'
 
-import giftController from "../controllers/giftController";
-import authMiddleware from "../middlewares/authMiddleware";
-import giftMiddleware from "../middlewares/giftMiddleware";
+import giftController from '../controllers/giftController'
+import authMiddleware from '../middlewares/authMiddleware'
+import giftMiddleware from '../middlewares/giftMiddleware'
 
-const gift = express.Router();
+const gift = express.Router()
 
-gift.get("/", giftController.findAllGifts);
-gift.get("/:id", giftController.findById);
+gift.get('/', giftController.findAllGifts)
+gift.get('/:id', giftController.findById)
 gift.post(
-  "/",
+  '/',
   authMiddleware.authToken,
   giftMiddleware.validateNewGift,
-  giftController.createNewGift
-);
+  giftController.createNewGift,
+)
 gift.put(
-  "/:id",
+  '/:id',
   authMiddleware.authToken,
   giftMiddleware.validateUpdateGift,
-  giftController.updateById
-);
-gift.delete("/:id", authMiddleware.authToken, giftController.deleteById);
+  giftController.updateById,
+)
+gift.delete('/:id', authMiddleware.authToken, giftController.deleteById)
 
-export default gift;
+export default gift

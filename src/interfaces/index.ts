@@ -1,28 +1,28 @@
-import { Request } from "express";
+import { Request } from 'express'
 export interface IUser {
-  name: string;
-  email: string;
-  password: string;
-  isAdmin: boolean;
+  name: string
+  email: string
+  password: string
+  isAdmin: boolean
 }
 
 export interface IGift {
-  name: string;
-  description: string;
-  amount: number;
-  available: boolean;
-  price: number;
-  imageUrl: string;
-  paymentMethod: string;
+  name: string
+  description: string
+  amount: number
+  available: boolean
+  price: number
+  imageUrl: string
+  paymentMethod: string
 }
 
 export interface IAuthRequest extends Request {
-  user?: IUser;
+  user?: IUser
 }
 
 export interface Payload {
   dataValues: {
-    name: string;
-    email: string;
-  };
+    name: string
+    email: string
+  }
 }

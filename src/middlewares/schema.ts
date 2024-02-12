@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi from 'joi'
 
 export const newUserSchema = Joi.object({
   name: Joi.string().min(8).required(),
@@ -7,7 +7,7 @@ export const newUserSchema = Joi.object({
     .required(),
   password: Joi.string().min(6).required(),
   isAdmin: Joi.boolean().required(),
-});
+})
 
 export const updateUserSchema = Joi.object({
   name: Joi.string().min(8).required(),
@@ -16,7 +16,7 @@ export const updateUserSchema = Joi.object({
     .required(),
   password: Joi.string().min(6),
   isAdmin: Joi.boolean().required(),
-});
+})
 
 export const newGiftSchema = Joi.object({
   name: Joi.string().min(3).required(),
@@ -26,4 +26,4 @@ export const newGiftSchema = Joi.object({
   price: Joi.number().required(),
   imageUrl: Joi.string().uri().required(),
   paymentMethod: Joi.string().required(),
-});
+})

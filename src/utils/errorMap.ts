@@ -5,10 +5,10 @@ export const errorMap = {
   GIFT_NOT_FOUND: 404,
   EMAIL_ALREADY_REGISTERED: 409,
   GIFT_ALREADY_REGISTERED: 409,
-} as const;
+} as const
 
-type ErrorType = keyof typeof errorMap;
+type ErrorType = keyof typeof errorMap
 
-export const mapError = (type: ErrorType) => errorMap[type] || 500;
+export const mapError = (type: ErrorType) => errorMap[type] || 500
 
-export default { errorMap, mapError };
+export default { errorMap, mapError }
