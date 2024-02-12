@@ -7,7 +7,7 @@ import { Payload } from '../interfaces'
 const validateLogin = async (email: string, password: string) => {
   if (!(email && password)) {
     return {
-      type: 'MISSING_FIELDS',
+      type: 'BAD_REQUEST',
       message: 'Some required fields are missing',
     }
   }
@@ -20,10 +20,10 @@ const validateLogin = async (email: string, password: string) => {
       const passwordMatch = await bcrypt.compare(password, user.password)
 
       if (!passwordMatch) {
-        return { type: 'INVALID_PASSWORD', message: 'Invalid password' }
+        return { type: 'UNAUTHORIZED', message: 'Invalid password' }
       }
     }
-    if (!user) return { type: 'INVALID_FIELDS', message: 'Invalid fields' }
+    if (!user) return { type: 'UNAUTHORIZED', message: 'Invalid fields' }
 
     const { isAdmin, name, id } = user
 
@@ -36,7 +36,7 @@ const validateLogin = async (email: string, password: string) => {
     const token = jwt.generateToken(payload)
     return { type: null, message: { token, isAdmin, name, email, id } }
   } catch (error) {
-    return { type: 'INVALID_FIELDS', message: 'Invalid fields' }
+    return { type: 'UNAUTHORIZED', message: 'Invalid fields' }
   }
 }
 

@@ -29,7 +29,7 @@ const createNewUser = async (req: IAuthRequest, res: Response) => {
   if (type)
     return res.status(mapError(type as keyof typeof errorMap)).json({ message })
 
-  res.status(200).json(message)
+  res.status(201).json(message)
 }
 
 const updateById = async (req: IAuthRequest, res: Response) => {
@@ -41,7 +41,7 @@ const updateById = async (req: IAuthRequest, res: Response) => {
   if (type)
     return res.status(mapError(type as keyof typeof errorMap)).json({ message })
 
-  res.status(200).json(message)
+  res.status(201).json(message)
 }
 
 const deleteById = async (req: IAuthRequest, res: Response) => {
@@ -51,7 +51,7 @@ const deleteById = async (req: IAuthRequest, res: Response) => {
   if (type)
     return res.status(mapError(type as keyof typeof errorMap)).json({ message })
 
-  res.status(200).json(message)
+  res.status(204).json(message)
 }
 
 export default { fildAllUsers, findById, createNewUser, updateById, deleteById }

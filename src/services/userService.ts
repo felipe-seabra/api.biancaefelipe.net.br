@@ -33,33 +33,40 @@ const createNewUser = async (user: IUser) => {
 }
 
 export const fildAllUsers = async () => {
-  const users = await prismaClient.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      isAdmin: true,
-    },
-  })
-  if (users.length === 0)
+  try {
+    const users = await prismaClient.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        isAdmin: true,
+      },
+    })
+    if (users.length === 0)
+      return { type: 'USER_NOT_FOUND', message: 'No user found' }
+
+    return { type: null, message: users }
+  } catch (err) {
     return { type: 'USER_NOT_FOUND', message: 'No user found' }
-  return { type: null, message: users }
+  }
 }
 
 const findById = async (id: string) => {
-  const result = await prismaClient.user.findUnique({
-    where: { id },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      isAdmin: true,
-    },
-  })
-  if (!result)
-    return { type: 'USER_NOT_FOUND', message: 'User does not exists' }
+  try {
+    const result = await prismaClient.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        isAdmin: true,
+      },
+    })
 
-  return { type: null, message: result }
+    return { type: null, message: result }
+  } catch (err) {
+    return { type: 'USER_NOT_FOUND', message: 'User does not exists' }
+  }
 }
 
 const updateById = async (props: IUser, id: string) => {
@@ -70,7 +77,7 @@ const updateById = async (props: IUser, id: string) => {
     })
 
     return { type: null, message: 'User updated successfully' }
-  } catch (error) {
+  } catch (err) {
     return { type: 'USER_NOT_FOUND', message: 'User does not exists' }
   }
 }
@@ -82,7 +89,7 @@ const deleteById = async (id: string) => {
     })
 
     return { type: null, message: 'User successfully deleted' }
-  } catch (error) {
+  } catch (err) {
     return { type: 'USER_NOT_FOUND', message: 'User does not exists' }
   }
 }
