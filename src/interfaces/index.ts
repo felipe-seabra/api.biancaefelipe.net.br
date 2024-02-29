@@ -31,5 +31,5 @@ export interface Payload {
 export interface IMessageForTheCouple {
   name: string
   email: string
-  message: string
+  message: string[]
 }
