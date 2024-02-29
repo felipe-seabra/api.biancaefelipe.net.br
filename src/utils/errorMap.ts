@@ -10,5 +10,3 @@ export const errorMap = {
 type ErrorType = keyof typeof errorMap
 
 export const mapError = (type: ErrorType) => errorMap[type] || 500
-
-export default { errorMap, mapError }

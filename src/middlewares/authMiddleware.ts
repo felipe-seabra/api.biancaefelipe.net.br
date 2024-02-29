@@ -1,26 +1,25 @@
 import { Request, Response, NextFunction } from 'express'
 import { IUser } from '../interfaces'
 
-import jwt from '../utils/jwt'
+import Jwt from '../utils/jwt'
 
 interface AuthRequest extends Request {
   user?: IUser
 }
 
-const authToken = (req: AuthRequest, res: Response, next: NextFunction) => {
-  const { authorization } = req.headers
+export default class Auth {
+  static authToken = (req: AuthRequest, res: Response, next: NextFunction) => {
+    const { authorization } = req.headers
 
-  if (!authorization) res.status(401).json({ message: 'Token not found' })
+    if (!authorization) res.status(401).json({ message: 'Token not found' })
 
-  try {
-    if (authorization) {
-      const user = jwt.decodeToken(authorization)
-      req.user = { ...user }
-      return next()
+    try {
+      if (authorization) {
+        Jwt.decodeToken(authorization)
+        return next()
+      }
+    } catch (err) {
+      res.status(401).json({ message: 'Expired or invalid token' })
     }
-  } catch (err) {
-    res.status(401).json({ message: 'Expired or invalid token' })
   }
 }
-
-export default { authToken }

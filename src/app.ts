@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
-import user from './routes/user'
-import gift from './routes/gifts'
-import login from './routes/login'
+import { user } from './routes/user'
+import { gift } from './routes/gifts'
+import { login } from './routes/login'
 
 const app = express()
 
@@ -18,8 +18,8 @@ app.use(
 
 app.use(express.json())
 
-app.use('/login', login)
-app.use('/user', user)
-app.use('/gift', gift)
+app.use('/v1/login', login)
+app.use('/v1/user', user)
+app.use('/v1/gift', gift)
 
 export default app

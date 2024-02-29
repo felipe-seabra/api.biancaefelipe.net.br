@@ -1,25 +1,23 @@
 import express from 'express'
 
-import giftController from '../controllers/giftController'
-import authMiddleware from '../middlewares/authMiddleware'
-import giftMiddleware from '../middlewares/giftMiddleware'
+import Auth from '../middlewares/authMiddleware'
+import GiftMiddleware from '../middlewares/giftMiddleware'
+import GiftController from '../controllers/giftController'
 
-const gift = express.Router()
+export const gift = express.Router()
 
-gift.get('/', giftController.findAllGifts)
-gift.get('/:id', giftController.findById)
+gift.get('/', GiftController.findAllGifts)
+gift.get('/:id', GiftController.findById)
 gift.post(
   '/',
-  authMiddleware.authToken,
-  giftMiddleware.validateNewGift,
-  giftController.createNewGift,
+  Auth.authToken,
+  GiftMiddleware.validateNewGift,
+  GiftController.createNewGift,
 )
 gift.put(
   '/:id',
-  authMiddleware.authToken,
-  giftMiddleware.validateUpdateGift,
-  giftController.updateById,
+  Auth.authToken,
+  GiftMiddleware.validateUpdateGift,
+  GiftController.updateById,
 )
-gift.delete('/:id', authMiddleware.authToken, giftController.deleteById)
-
-export default gift
+gift.delete('/:id', Auth.authToken, GiftController.deleteById)

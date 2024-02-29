@@ -8,25 +8,25 @@ const jwtConfig: SignOptions & VerifyOptions = {
   algorithm: 'HS256',
 }
 
-const generateToken = (payload: Payload): string => {
-  try {
-    return jwt.sign(payload.dataValues, JWT_SECRET, jwtConfig)
-  } catch (err) {
-    throw new Error('Failed to generate token')
+export default class Jwt {
+  static generateToken = (payload: Payload): string => {
+    try {
+      return jwt.sign(payload.dataValues, JWT_SECRET, jwtConfig)
+    } catch (err) {
+      throw new Error('Failed to generate token')
+    }
+  }
+
+  static decodeToken = (token: string) => {
+    if (!token) {
+      throw new Error('Undefined Token')
+    }
+
+    try {
+      const result = jwt.verify(token, JWT_SECRET)
+      return result
+    } catch (err) {
+      throw new Error('Invalid signature')
+    }
   }
 }
-
-const decodeToken = (token: string): any => {
-  if (!token) {
-    throw new Error('Undefined Token')
-  }
-
-  try {
-    const result = jwt.verify(token, JWT_SECRET)
-    return result
-  } catch (err) {
-    throw new Error('Invalid signature')
-  }
-}
-
-export default { generateToken, decodeToken }
