@@ -30,7 +30,7 @@ model Gifts {
 model MessageForTheCouple {
   id        String @id @default(uuid())
   name      String
-  email     String
+  email     String  @unique
   message   String
   createdAt DateTime @default(now())
 }
