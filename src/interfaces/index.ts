@@ -27,3 +27,9 @@ export interface Payload {
     email: string
   }
 }
+
+export interface IMessageForTheCouple {
+  name: string
+  email: string
+  message: string
+}

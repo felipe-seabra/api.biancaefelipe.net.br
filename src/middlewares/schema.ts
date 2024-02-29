@@ -28,3 +28,11 @@ export const newGiftSchema = Joi.object({
   imageUrl: Joi.string().uri().required(),
   paymentMethod: Joi.string().required(),
 })
+
+export const newMessageSchema = Joi.object({
+  name: Joi.string().min(8).required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
+  message: Joi.string().min(8).required(),
+})

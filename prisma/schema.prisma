@@ -26,3 +26,11 @@ model Gifts {
   imageUrl      String
   paymentMethod String
 }
+
+model MessageForTheCouple {
+  id        String @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
