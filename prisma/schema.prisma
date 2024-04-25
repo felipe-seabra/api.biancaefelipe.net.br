@@ -8,29 +8,34 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid())
-  name     String
-  email    String   @unique
-  password String
-  isAdmin  Boolean
-  isMaster Boolean?  @default(false)
+  id              String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  password        String
+  isAdmin         Boolean
+  isMaster        Boolean?  @default(false)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model Gifts {
-  id            String  @id @default(uuid())
-  name          String  @unique
-  description   String
-  amount        Int
-  available     Boolean
-  price         Int
-  imageUrl      String
-  paymentMethod String
+  id              String  @id @default(uuid())
+  name            String  @unique
+  description     String
+  amount          Int
+  available       Boolean
+  price           Int
+  imageUrl        String
+  paymentMethod   String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }
 
 model MessageForTheCouple {
-  id        String @id @default(uuid())
-  name      String
-  email     String  @unique
-  message   String[]
-  createdAt DateTime @default(now())
+  id              String @id @default(uuid())
+  name            String
+  email           String  @unique
+  message         String[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 }

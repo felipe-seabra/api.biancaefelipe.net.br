@@ -8,7 +8,12 @@ export const user = express.Router()
 
 user.get('/', Auth.authToken, UserController.fildAllUsers)
 user.get('/:id', Auth.authToken, UserController.findById)
-user.post('/', UserMiddleware.validateNewUser, UserController.createNewUser)
+user.post(
+  '/',
+  Auth.authToken,
+  UserMiddleware.validateNewUser,
+  UserController.createNewUser,
+)
 user.put(
   '/:id',
   Auth.authToken,

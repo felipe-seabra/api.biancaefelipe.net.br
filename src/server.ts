@@ -1,7 +1,7 @@
 import app from './app'
 import { NextFunction, Request, Response } from 'express'
 
-const port = process.env.PORT || 3000
+const port = process.env.API_PORT || 3000
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   if (req.url === '/') {

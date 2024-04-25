@@ -46,6 +46,8 @@ export default class UserService {
           email: true,
           isAdmin: true,
           isMaster: true,
+          createdAt: true,
+          updatedAt: true,
         },
       })
       if (users.length === 0)
@@ -67,6 +69,8 @@ export default class UserService {
           email: true,
           isAdmin: true,
           isMaster: true,
+          createdAt: true,
+          updatedAt: true,
         },
       })
 
