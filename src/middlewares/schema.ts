@@ -36,3 +36,14 @@ export const newMessageSchema = Joi.object({
     .required(),
   message: Joi.string().min(8).required(),
 })
+
+export const newSupplierSchema = Joi.object({
+  name: Joi.string().min(8).required(),
+  phone: Joi.string().required(),
+  email: Joi.string().email().optional(),
+  service: Joi.string().required(),
+  contractedValue: Joi.number().integer().min(0).required(),
+  amountPaid: Joi.number().integer().min(0).required(),
+  observation: Joi.array().items(Joi.string()).optional(),
+  opened: Joi.boolean().required(),
+})

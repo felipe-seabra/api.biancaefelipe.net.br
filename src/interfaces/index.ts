@@ -33,3 +33,22 @@ export interface IMessageForTheCouple {
   email: string
   message: string[]
 }
+
+export interface ISupplier {
+  name: string
+  phone: string
+  email?: string
+  service: string
+  contractedValue: number
+  amountPaid: number
+  observation: string[]
+  opened: boolean
+}
+
+export interface IGuest {
+  name: string
+  parentage: string
+  paying: boolean
+  confirmed: boolean
+  giftId?: string
+}
